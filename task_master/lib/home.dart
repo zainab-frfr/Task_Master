@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_master/dialog_box.dart';
 import 'todo_tiles.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -10,6 +11,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  //text controller
+  final _controller = TextEditingController();
+
   List todolist = [
     ['code!',false],
     ['work out',false],
@@ -20,6 +24,33 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       todolist[index][1] = !todolist[index][1]; 
     });
+  }
+
+  //save new task
+  void saveNewTask(){
+    setState(() {
+      todolist.add([_controller.text,false]);
+    });
+
+    Navigator.of(context).pop();
+    _controller.clear();
+  }
+
+  //new task
+  void createNewTask(){
+    showDialog(
+      context: context, 
+      builder: (context){
+        return DialogBox(
+          controller: _controller,
+          onCancel: () {
+            Navigator.of(context).pop();
+            _controller.clear();
+          },
+          onSave: saveNewTask,
+        );
+      }
+    );
   }
 
   @override
@@ -37,6 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         elevation: 0.5,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: createNewTask,
+        elevation: 0.5,
+        child: const Icon(Icons.add),
       ),
       body: ListView.builder(
         itemCount: todolist.length,
