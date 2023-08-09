@@ -84,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.yellow[200],
       appBar: AppBar(
+        //backgroundColor: Color.fromARGB(255, 255, 203, 59),
         centerTitle: true,
         title: const Text(
           'TASKS',
@@ -98,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
         elevation: 0.5,
+        backgroundColor: Color.fromARGB(255, 255, 203, 59),
         child: const Icon(Icons.add),
       ),
       body: ListView.builder(

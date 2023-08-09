@@ -11,8 +11,8 @@ class ToDoDatabase{
   //if first time opening app
   void createInitialData(){
     todolist = [
-      ['Build app',false],
-      ['Work out', false],
+      ['Code',false],
+      ['Eat', false],
     ];
   }
 
